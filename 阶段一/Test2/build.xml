@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+ 
+<project name="ant and junit" default="test auot junit and report" basedir=".">
+   
+    <!-- 定义工程依赖的jar包存放的位置 -->
+    <property name="lib.dir" value="lib"/>
+	
+    <path id="classpath">
+       <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
+ 
+	<!-- 定义变量-->
+    <property name="output folder" value="classes"/>
+    <property name="src folder" value="src"/>
+    <property name="test folder" value="test"/>
+    <property name="report folder" value="report"/>
+	<property name="xml folder" value="xml"/>
+ 
+    <target name="clean">
+       <delete dir="${report folder}"/>
+       <delete dir="${xml folder}"/>
+       <echo>清除测试报告文件 成功!</echo>
+    </target>
+ 
+    <target name="compile init">
+    	<delete dir="${output folder}"/>
+        <mkdir dir="${output folder}"/>
+        <echo>创建编译文件夹 成功!</echo>
+    </target>
+ 
+    <target name="report init" depends="clean">
+       <mkdir dir="${report folder}"/>
+       <mkdir dir="${xml folder}" />
+       <echo>创建测试报告文件夹 成功!</echo>
+    </target>
+ 
+    <target name="compile" depends="compile init">
+       <javac srcdir="${src folder}" destdir="${output folder}" classpathref="classpath"/>
+       <echo>项目源文件编译 成功!</echo>
+    </target>
+ 
+    <target name="test compile" depends="report init">
+       <javac srcdir="${test folder}" destdir="${output folder}" classpathref="classpath"/>
+       <echo>项目测试文件编译 成功!</echo>
+    </target>
+ 
+    <target name="all compile" depends="compile, test compile">
+    </target>
+ 
+	<!-- 执行单元测试用例并生成单元测试报告-->
+    <target name="test auot junit and report" depends="all compile">
+      <!-- printsummary 为每一个测试用例通过System.out输出一行统计信息-->
+    	<!-- 如果出错或者测试失败则通过System.err输出信息-->
+    	<!-- haltonerror 执行单元测试出错时候停止执行后续用例-->
+    	<!-- haltonfailure 执行单元测试失败时停止执行后续用例-->
+    	<!-- fork 在独立的VM中执行单元测试用例 一定要为true才能成功运行-->
+    	<!-- junit 定义一个junit task-->
+       <junit printsummary="false" fork="true" showoutput="true" haltonfailure="false" failureproperty="tests.failed">
+           <classpath>
+              <fileset dir="${lib.dir}" includes="**/*.jar"/>
+              <pathelement path="${output folder}"/>
+           </classpath>
+       	
+           <!-- formatter，位于<junit>中，定义一个测试结果输出格式-->
+           <formatter type="plain" usefile="on"/>
+       	   <formatter type="xml" usefile="on" />
+
+           <!-- batchtest，位于<junit>中，运行多个TestCase-->
+           <batchtest todir="${xml folder}">
+              <fileset dir="${output folder}">
+                  <include name="**/*Test*.*"/>
+              </fileset>
+           </batchtest>
+       </junit>
+    	
+    </target>
+</project>

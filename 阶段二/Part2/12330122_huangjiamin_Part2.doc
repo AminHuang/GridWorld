@@ -1,0 +1,40 @@
+﻿Do You Know?
+Set 2
+ 
+The source code for the BoxBug class can be found in the  boxBug directory.
+ 
+1. What is the role of the instance variable sideLength?
+       Answer: The variable sideLength defines the maximum number of steps a BoxBug move on each side of its box. 
+
+2. What is the role of the instance variable steps?
+   Answer: The instance variable steps records the number of steps the BoxBug have already moved on the current side of its box.
+
+3. Why is the turn method called twice when steps becomes equal to 
+sideLength?
+     Answer: When steps becomes equal to sideLength, a BoxBug needs to turn right 90 degrees to the next side of its box. Because the turn method called    once will just make the BoxBug turn 45 degrees, the turn method should be    called twice.
+
+4. Why can the move method be called in the BoxBug class when there is no  move method in the BoxBug code?
+     Answer: Since the BoxBug class extends the Bug class which has a public   method move, it inherits the method move from the Bug class.
+
+5. After a BoxBug is constructed, will the size of its square pattern always be  the same? Why or why not?
+     Answer: Yes. When a BoxBug is constructed, the parameter sideLength is    determined. That is, the size of its square pattern is determined and cannot be changed. So  the size of its square pattern always be the same.
+
+6. Can the path a BoxBug travels ever change? Why or why not?
+   Answer: Yes.  When the BoxBug advances the reverse is blocked by Rock or another Bug, the BuxBug will change direction and start a new box path. 
+
+7. When will the value of steps be zero?
+   Answer: First, the value of steps is zero when a BoxBug is constructed.        Second, the value of steps will be set to zero when the BoxBug has completed one side of its box path and turn to another side, or when the BoxBug              advances the reverse is blocked and has to change direction.
+
+
+Exercises
+
+In the following exercises, write a new class that extends the Bug class.         Override the act method to define the new behavior.
+
+1. Write a class CircleBug that is identical to BoxBug, except that in the act   method the turn method is called once instead of twice. How is its behavior    different from a BoxBug?
+   Answer:  The shape of a CircleBug moves is circle instead of square.
+
+5. Study the code for the BoxBugRunner class. Summarize the steps you        would use to add another BoxBug actor to the grid.
+   Answer:  First, create a new BoxBug object with the given length.
+                     BoxBug someone = new BoxBug(4);
+                    Second, add the new BoxBug object to the world.
+                      World.add(nwe Location(3,8), someone);

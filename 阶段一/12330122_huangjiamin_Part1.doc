@@ -1,0 +1,50 @@
+﻿Do You Know?
+Set 1
+
+1.  Does the bug always move to a new location? Explain. 
+    Answer: No, it doesn't. The bug will only move to the new location in front of it if the cell exists and the cell is empty or there is a flower in the cell. 
+
+2.  In which direction does the bug move? 
+    Answer: Forward direction.
+
+3.  What does the bug do if it does not move? 
+    Answer: It turns right 45 degrees.
+
+4.  What does a bug leave behind when it moves? 
+    Answer: The bug leaves a flower which color is the same as the bug in its old cell.
+    
+5.  What happens when the bug is at an edge of the grid? (Consider whether the bug is facing the edge as well as whether the bug is facing some other direction when answering this question.)
+    Answer: The bug will turn right 45 degrees when the bug is at an edge of the grid and it is asked to act. If asked to act again, the bug will turn right 45 degrees again.
+
+6.  What happens when a bug has a rock in the location immediately in front of it? 
+    Answer: It turns right 45 degrees.
+
+7.  Does a flower move? 
+    Answer: No.
+
+8.  What behavior does a flower have? 
+    Answer: The color of a flower darkens until it becomes dark gray and the flower will always stay there.
+
+9.  Does a rock move or have any other behavior? 
+    Answer: No.
+
+10.  Can more than one actor (bug, flower, rock) be in the same location in the grid at the same time?
+    Answer: No.
+
+
+Exercises
+
+1. Test the setDirection method with the following inputs and complete the table, giving the compass direction each input represents.
+Degrees
+0Compass Direction
+North45Northeast90East135Southeast180South225Southwest270West315Northwest360North
+2. Move a bug to a different location using the moveTo method. In which directions can you move it? How far can you move it? What happens if you try to move the bug outside the grid?
+   Answer: All valid location in the grid can be moved. If I try to move the bug outside the grid, an IllegalArgumentException will be thrown.
+
+3. Change the color of a bug, a flower, and a rock. Which method did you use?
+   Answer: setColor method.
+
+4. Move a rock on top of a bug and then move the rock again. What happened to the bug?
+   Answer: When a rock is moved on top of a bug, the bug is covered by the rock,  you cannot see the bug in the grid. If the rock is moved again, the rock appears in the new location, but the bug does not be there or anywhere else in the grid any longer. That is, the bug is removed.
+
+
